@@ -3,12 +3,8 @@ import { NgModule } from '@angular/core';
 import { UiComponent } from './components/ui/ui.component';
 
 @NgModule({
-  declarations: [
-    UiComponent
-  ],
+  declarations: [UiComponent],
   imports: [CommonModule],
-  exports: [
-    UiComponent
-  ],
+  exports: [UiComponent],
 })
 export class UiModule {}
