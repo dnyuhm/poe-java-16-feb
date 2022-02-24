@@ -8,9 +8,19 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public title: string;
+  public headers: string[];
 
   constructor(private ordersService: OrdersService) {
     this.title = 'list orders';
+    this.headers = [
+      'typePresta',
+      'client',
+      'tjmHt',
+      'nbJours',
+      'TOTALHT',
+      'TOTALTTC',
+      'state',
+    ];
 
     this.ordersService.collection$.subscribe((data) => console.log(data));
   }
