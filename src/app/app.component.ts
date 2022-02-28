@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnDestroy {
   private obs$: Observable<any>;
   private subj$: Subject<any>;
   private behave$: BehaviorSubject<any>;
-  private sub: Subscription;
+  // private sub: Subscription;
 
   constructor() {
     this.obs$ = new Observable<any>((listX) => {
@@ -19,7 +19,7 @@ export class AppComponent implements OnDestroy {
     });
     this.subj$ = new Subject<any>();
     this.behave$ = new BehaviorSubject<any>('toto');
-    this.sub = this.behave$.subscribe((data) => console.log(data));
+    // this.sub = this.behave$.subscribe((data) => console.log(data));
 
     // this.obs$.subscribe((data) => console.log(data));
     // this.obs$.subscribe((data) => console.log(data));
@@ -34,6 +34,6 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 }
