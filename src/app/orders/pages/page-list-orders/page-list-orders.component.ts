@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
 
@@ -10,7 +11,7 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
   public title: string;
   public headers: string[];
-  public collection!: Order[];
+  public collection$: Observable<Order[]>;
 
   constructor(private ordersService: OrdersService) {
     this.title = 'list orders';
@@ -24,10 +25,16 @@ export class PageListOrdersComponent implements OnInit {
       'state',
     ];
 
-    this.ordersService.collection$.subscribe(
-      (data) => (this.collection = data)
-    );
+    this.collection$ = this.ordersService.collection$;
   }
 
   ngOnInit(): void {}
+
+  // Nous n'allons pas utiliser cette méthode dans le html car elle est appelée bien plus que necessaire
+  // dans notre tableau , c'est une mauvaise pratique !
+  // public total(val: number, coef: number, tva?: number): number {
+  //   console.log('total called');
+  //   if (tva) return val * coef * (1 + tva / 100);
+  //   return val * coef;
+  // }
 }

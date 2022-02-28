@@ -1,14 +1,14 @@
 <app-template-full-width [title]="title">
-  <app-table-light [headers]="headers" *ngIf="collection">
+  <app-table-light [headers]="headers" *ngIf="collection$ | async as collection">
     <tr *ngFor="let order of collection">
       <td>{{ order.typePresta }}</td>
       <td>{{ order.client }}</td>
       <td>{{ order.tjmHt }}</td>
       <td>{{ order.nbJours }}</td>
-      <td>{{ order.tjmHt * order.nbJours }}</td>
-      <td>TOTAL TTC</td>
+      <td>{{ order.tjmHt | total : order.nbJours }}</td>
+      <td>{{ order.tjmHt | total : order.nbJours : order.tva }}</td>
       <td>{{ order.state }}</td>
     </tr>
   </app-table-light>
 </app-template-full-width>
-<app-btn route="add" label="toto"></app-btn>
+<app-btn route="add" label="add order"></app-btn>
