@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -15,11 +16,12 @@ export class PageListOrdersComponent implements OnInit {
   public states: string[];
   public headers: string[];
 
-  constructor(private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private router: Router) {
     this.title = 'list orders';
     this.collection$ = this.ordersService.collection$;
     this.states = Object.values(StateOrder);
     this.headers = [
+      'Actions',
       'Type',
       'Client',
       'Nb jours',
@@ -36,9 +38,14 @@ export class PageListOrdersComponent implements OnInit {
 
   public changeState(item: Order, event: any): void {
     const state = event.target.value;
-    this.ordersService.changeState(item, state).subscribe((data) => item = data);
-    }
+    this.ordersService
+      .changeState(item, state)
+      .subscribe((data) => (item = data));
+  }
 
+  public goToEdit(id: number): void {
+    this.router.navigate(['orders', 'edit', id]);
+  }
 
   // Nous n'allons pas utiliser cette méthode dans le html car elle est appelée bien plus que necessaire
   // dans notre tableau , c'est une mauvaise pratique !

@@ -1,12 +1,12 @@
 {
   "orders": [
     {
-      "tjmHt": 1200,
-      "nbJours": 20,
+      "tjmHt": 600,
+      "nbJours": 10,
       "tva": 20,
       "state": "OPTION",
       "typePresta": "formation",
-      "client": "Capgemini2",
+      "client": "Capgemini",
       "comment": "Merci Cap pour les 24k",
       "id": 1
     },

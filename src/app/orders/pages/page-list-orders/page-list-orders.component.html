@@ -2,6 +2,10 @@
   <!-- <pre>{{ collection | json }}</pre> -->
   <app-table-light [headers]="headers">
     <tr *ngFor="let order of collection">
+      <td>
+        <app-icon-edit (click)="goToEdit(order.id)"></app-icon-edit>
+        <app-icon-delete></app-icon-delete>
+      </td>
       <td>{{ order.typePresta | titlecase }}</td>
       <td>{{ order.client }}</td>
       <td>{{ order.nbJours }}</td>
